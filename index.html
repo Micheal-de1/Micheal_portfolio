@@ -283,6 +283,25 @@ footer p{
 .project-card a:hover{
   background:#0ea5e9;
 }
+nav ul li a{
+  position:relative;
+  transition:0.3s;
+}
+
+nav ul li a::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  left:0;
+  bottom:-5px;
+  background:#38bdf8;
+  transition:0.3s;
+}
+
+nav ul li a:hover::after{
+  width:100%;
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -446,6 +465,16 @@ alert("Failed to send message");
 console.log(error);
 });
 
+});
+</script>
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+ScrollReveal().reveal('.project-card', {
+    distance:'50px',
+    duration:1000,
+    interval:200,
+    origin:'bottom'
 });
 </script>
 </body>
