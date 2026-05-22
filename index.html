@@ -133,6 +133,7 @@ background:#e2e8f0;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:30px;
+  align-items:stretch;
 }
 
 .project-card{
@@ -140,23 +141,33 @@ background:#e2e8f0;
   padding:20px;
   border-radius:20px;
   text-align:center;
-  transition:0.3s;
+  transition:0.4s;
   backdrop-filter:blur(10px);
-}
 
-.project-card:hover{
-  transform:translateY(-10px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 .project-card img{
   width:100%;
+  height:200px;
+  object-fit:cover;
   border-radius:15px;
   margin-bottom:15px;
 }
 
+.project-card h3{
+  margin-bottom:10px;
+}
+
+.project-card p{
+  flex-grow:1;
+}
+
 .project-card a{
   display:inline-block;
-  margin-top:15px;
+  margin-top:20px;
   padding:10px 20px;
   background:#38bdf8;
   color:white;
