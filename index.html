@@ -67,45 +67,69 @@ color:#38bdf8;
 }
 
 /* HERO */
-#home{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:120px 40px 60px;
-flex-wrap:wrap;
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px 10%;
+    gap:40px;
+    flex-wrap:wrap;
 }
 
-.hero-text h1{font-size:40px;}
-.hero-text h2{color:#38bdf8;}
-.hero-text p{opacity:0.8;}
+.hero-text{
+    flex:1;
+}
 
-button{
-margin-top:15px;
-padding:10px 15px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-background:#38bdf8;
+.hero-text h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:20px;
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    padding:14px 28px;
+    background:#38bdf8;
+    color:white;
+    border-radius:10px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+.btn-outline{
+    background:transparent;
+    border:2px solid #38bdf8;
 }
 
 .hero-image img{
-border-radius:50%;
-width:250px;
+    width:320px;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(56,189,248,0.4);
 }
-
-/* SECTIONS */
 section{
-padding:80px 40px;
-opacity:0;
-transform:translateY(40px);
-transition:0.6s ease;
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
 }
 
 section.show{
-opacity:1;
-transform:translateY(0);
+    opacity:1;
+    transform:translateY(0);
 }
-
 #about,#goal,#contact{
 background:#111827;
 margin-top:20px;
@@ -314,17 +338,33 @@ nav ul li a:hover::after{
 <li><a href="#contact">Contact</a></li>
 </ul>
 <button onclick="toggleTheme()">🌙</button>
-</nav><section id="home">
-<div class="hero-text">
-<h1>Hello, I'm Michael</h1>
-<h2>I am <span id="typing"></span></h2>
-<p>Frontend developer building modern websites.</p>
-<button onclick="downloadCV()">Download CV</button>
-</div>
-<div class="hero-image">
-<img src="https://picsum.photos/300" />
-</div>
-</section><section id="about">
+</nav><body>
+
+  <!-- NAVBAR -->
+  <nav>
+    ...
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm David</h1>
+      <p>Frontend Developer & Creative Designer</p>
+
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="images/profile.jpg" alt="Profile">
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+<section id="about">
+
 <h2>About Me</h2>
 <p>I am learning web development and building real projects.</p>
 </section><section id="goal">
@@ -475,6 +515,18 @@ ScrollReveal().reveal('.project-card', {
     duration:1000,
     interval:200,
     origin:'bottom'
+});
+</script>
+<script>
+window.addEventListener("scroll", () => {
+  document.querySelectorAll("section").forEach(sec => {
+    const top = window.scrollY;
+    const offset = sec.offsetTop - 400;
+
+    if(top > offset){
+      sec.classList.add("show");
+    }
+  });
 });
 </script>
 </body>
