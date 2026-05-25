@@ -371,6 +371,39 @@ nav ul li a{
     font-weight:bold;
     font-size:24px;
 }
+@media(max-width:768px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:120px;
+    }
+
+    .hero-text h1{
+        font-size:40px;
+    }
+
+    .hero-image img{
+        width:220px;
+        height:220px;
+    }
+
+    .navbar{
+        padding:20px;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .navbar ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .project-container{
+        grid-template-columns:1fr;
+    }
+}
 
 </style></head><body><canvas id="particles"></canvas>
 
