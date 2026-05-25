@@ -12,6 +12,7 @@ font-family:Arial, sans-serif;
 }
     
 body{
+padding-top: 90px;
 background:#0f172a;
 color:#fff;
 overflow-x:hidden;
@@ -343,6 +344,36 @@ nav ul li a::after{
 
 nav ul li a:hover::after{
   width:100%;
+}
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(15,23,42,0.7);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#38bdf8;
 }
 </style></head><body><canvas id="particles"></canvas>
 
