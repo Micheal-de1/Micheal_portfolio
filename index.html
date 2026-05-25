@@ -608,7 +608,8 @@ window.addEventListener("scroll", () => {
 });
 </script>
 <script>
-  const texts = [
+  <script>
+const texts = [
   "Frontend Developer",
   "Creative Designer",
   "Web Developer",
@@ -618,27 +619,37 @@ window.addEventListener("scroll", () => {
 let count = 0;
 let index = 0;
 let currentText = "";
-let letter = "";
+let isDeleting = false;
 
-(function type(){
-
-  if(count === texts.length){
-    count = 0;
-  }
-
+function type() {
   currentText = texts[count];
-  letter = currentText.slice(0, ++index);
 
-  document.querySelector(".typing").textContent = letter;
+  if (!isDeleting) {
+    index++;
+    document.querySelector(".typing").textContent =
+      currentText.slice(0, index);
 
-  if(letter.length === currentText.length){
-    count++;
-    index = 0;
+    if (index === currentText.length) {
+      isDeleting = true;
+      setTimeout(type, 1000); // pause before deleting
+      return;
+    }
+  } else {
+    index--;
+    document.querySelector(".typing").textContent =
+      currentText.slice(0, index);
+
+    if (index === 0) {
+      isDeleting = false;
+      count = (count + 1) % texts.length;
+    }
   }
 
-  setTimeout(type, 150);
+  setTimeout(type, isDeleting ? 60 : 120);
+}
 
-})();  
+type();
+</script>
 </script>
 <script>
    const hiddenElements = document.querySelectorAll(".hidden");
