@@ -12,7 +12,7 @@ font-family:Arial, sans-serif;
 }
     
 body{
-padding-top: 90px;
+padding-top: 100px;
 background:#0f172a;
 color:#fff;
 overflow-x:hidden;
@@ -33,9 +33,7 @@ width:100%;
 height:100%;
 z-index:-1;
 }
-
-/* HERO NAVBAR */
-nav{
+.navbar{
     position:fixed;
     top:0;
     left:0;
@@ -49,24 +47,30 @@ nav{
     z-index:1000;
 }
 
-nav ul{
+.navbar h2{
+    color:#38bdf8;
+}
+
+.navbar ul{
     display:flex;
-    align-items:center;
     gap:30px;
     list-style:none;
 }
 
-nav ul li a{
-    color:#ffffff;
+.navbar ul li a{
+    color:white;
     text-decoration:none;
     font-size:18px;
-    font-weight:500;
     transition:0.3s;
 }
 
-nav ul li a:hover{
+.navbar ul li a:hover{
     color:#38bdf8;
 }
+
+    
+
+
 
 /* HERO */
 .hero{
