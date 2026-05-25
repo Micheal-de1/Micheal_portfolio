@@ -366,6 +366,11 @@ nav ul li a{
     transform:translateY(-10px) scale(1.03);
     box-shadow:0 0 30px rgba(56,189,248,0.5);
 }
+.typing{
+    color:#38bdf8;
+    font-weight:bold;
+    font-size:24px;
+}
 
 </style></head><body><canvas id="particles"></canvas>
 
@@ -390,7 +395,7 @@ nav ul li a{
   <section class="hero">
     <div class="hero-text">
       <h1>Hello, I'm Micheal</h1>
-      <p>Frontend Developer & Creative Designer</p>
+      <p><span> class="typing"</span></p>
 
       <div class="hero-buttons">
         <a href="#projects" class="btn">View Projects</a>
@@ -569,6 +574,39 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+</script>
+<script>
+  const texts = [
+  "Frontend Developer",
+  "Creative Designer",
+  "Web Developer",
+  "UI/UX Enthusiast"
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type(){
+
+  if(count === texts.length){
+    count = 0;
+  }
+
+  currentText = texts[count];
+  letter = currentText.slice(0, ++index);
+
+  document.querySelector(".typing").textContent = letter;
+
+  if(letter.length === currentText.length){
+    count++;
+    index = 0;
+  }
+
+  setTimeout(type, 150);
+
+})();  
 </script>
 </body>
 </html>
