@@ -613,24 +613,56 @@ color:#0f172a;
 font-size:14px;
 opacity:0.7;
 }
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
+}
+
+@media(max-width:768px){
+
+.nav-links{
+position:absolute;
+top:70px;
+right:-100%;
+background:#1e293b;
+width:220px;
+height:100vh;
+flex-direction:column;
+padding-top:40px;
+transition:0.5s;
+}
+
+.nav-links.active{
+right:0;
+}
+
+.menu-btn{
+display:block;
+}
+
+}
+
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
-<h2>My Portfolio</h2>
-<ul>
-<li><a href="#home" class="active">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#goal">Goal</a></li>
-<li><a href="#project">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<button onclick="toggleTheme()">🌙</button>
-</nav><body>
 
-  <!-- NAVBAR -->
-  <nav>
-    ...
-  </nav>
+  <h2 class="logo">My Portfolio</h2>
+
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#goal">Goal</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+
+  <div class="menu-btn">
+    ☰
+  </div>
+
+</nav>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -875,6 +907,16 @@ window.addEventListener("scroll", () => {
       sec.classList.add("show");
     }
   });
+});
+</script>
+<script>
+  const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", ()=>{
+
+navLinks.classList.toggle("active");
+
 });
 </script>
 <script>
