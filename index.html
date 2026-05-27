@@ -144,15 +144,15 @@ section.show{
 }
 
 .hero-image img{
-    width:300px;
-    height:300px;
-    object-fit:cover;
-    border-radius:50%;
-    border:5px solid #38bdf8;
-    box-shadow:0 0 40px rgba(56,189,248,0.5);
-    animation:float 3s ease-in-out infinite;
+width:250px;
+height:250px;
+object-fit:cover;
+border-radius:50%;
+border:4px solid #38bdf8;
 }
-
+#home{
+padding-top:120px;
+}
 #about,#goal,#contact{
 background:#111827;
 margin-top:20px;
@@ -538,6 +538,14 @@ background:#334155;
 margin-bottom:10px;
 color:#38bdf8;
 }
+.about-text{
+max-width:700px;
+margin:auto;
+text-align:center;
+line-height:1.8;
+font-size:18px;
+color:#cbd5e1;
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -578,12 +586,17 @@ color:#38bdf8;
 
   <!-- ABOUT SECTION -->
 <section id="about">
+  <h2 class="section-title">About Me</h2>
+  <p class="about-text">
+    I am learning frontend web development and building modern responsive websites using HTML, CSS and JavaScript.
+  </p>
+</section>
 
-<h2>About Me</h2>
-<p>I am learning web development and building real projects.</p>
-</section><section id="goal">
-<h2>My Goal</h2>
-<p>Become a professional full-stack developer.</p>
+<section id="goal">
+  <h2 class="section-title">My Goal</h2>
+  <p class="about-text">
+    My goal is to become a professional full-stack developer and build real-world projects.
+  </p>
 </section>
 <!--SKILLS SECTION -->
 <section id="skills">
