@@ -560,6 +560,16 @@ line-height:1.8;
 font-size:18px;
 color:#cbd5e1;
 }
+.hidden{
+opacity:0;
+transform:translateY(50px);
+transition:all 1s ease;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -599,21 +609,21 @@ color:#cbd5e1;
   </section>
 
   <!-- ABOUT SECTION -->
-<section id="about">
+<section id="about" class="hidden>
   <h2 class="section-title">About Me</h2>
   <p class="about-text">
     I am learning frontend web development and building modern responsive websites using HTML, CSS and JavaScript.
   </p>
 </section>
 
-<section id="goal">
+<section id="goal" class="hidden">
   <h2 class="section-title">My Goal</h2>
   <p class="about-text">
     My goal is to become a professional full-stack developer and build real-world projects.
   </p>
 </section>
 <!--SKILLS SECTION -->
-<section id="skills">
+<section id="skills" class="hidden>
     
   <h2 class="section-title">My Skills</h2>
 
@@ -636,7 +646,7 @@ color:#cbd5e1;
 
   </div>
 </section>
-<section id="projects">
+<section id="projects" class="hidden>
 
   <h2 class="section-title">My Projects</h2>
 
@@ -696,7 +706,7 @@ color:#cbd5e1;
   </div>
 
 </section>
-</section><section id="contact-form">
+</section><section id="contact-form" class="hidden>
 <h2>Contact</h2>
 <p>Email: michealweijie@gmail.com</p><form onsubmit="sendMsg(event)">
 <input type="text" name="from_name" placeholder="Your Name" required>
@@ -879,5 +889,19 @@ const observer = new IntersectionObserver((entries)=>{
 
 hiddenElements.forEach((el)=>observer.observe(el)); 
 </script>
+<script>
+  const hiddenElements = document.querySelectorAll(".hidden");
+
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach((entry)=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+hiddenElements.forEach((el)=>observer.observe(el));
+</script>
+<script scr="script.js"></script>
 </body>
 </html>
