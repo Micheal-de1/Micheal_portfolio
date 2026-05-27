@@ -669,7 +669,31 @@ right:0;
 }
 
 }
+#theme-toggle{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#38bdf8;
+font-size:18px;
+}
 
+.light-mode{
+background:white;
+color:#0f172a;
+}
+
+.light-mode section{
+background:white;
+color:#0f172a;
+}
+
+.light-mode .project-card,
+.light-mode .skill-card,
+.light-mode .nav-links{
+background:#e2e8f0;
+color:#0f172a;
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -683,7 +707,9 @@ right:0;
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
   </ul>
-
+  <button id="theme-toggle">
+   🌙
+  </button>
   <div class="menu-btn">
     ☰
   </div>
@@ -1012,6 +1038,21 @@ entry.target.classList.add("show");
 });
 
 hiddenElements.forEach((el)=>observer.observe(el));
+</script>
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", ()=>{
+
+document.body.classList.toggle("light-mode");
+
+if(document.body.classList.contains("light-mode")){
+themeToggle.innerHTML = "☀️";
+}else{
+themeToggle.innerHTML = "🌙";
+}
+
+});
 </script>
 <script scr="script.js"></script>
 <footer>
