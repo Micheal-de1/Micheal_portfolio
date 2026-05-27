@@ -513,6 +513,31 @@ html {
   transform: translateY(-8px);
   border-color: #00ffcc;
 }
+.skills-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.skill-card{
+background:#1e293b;
+padding:25px;
+border-radius:15px;
+text-align:center;
+transition:0.4s;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.skill-card:hover{
+transform:translateY(-10px);
+background:#334155;
+}
+
+.skill-card h3{
+margin-bottom:10px;
+color:#38bdf8;
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -559,6 +584,29 @@ html {
 </section><section id="goal">
 <h2>My Goal</h2>
 <p>Become a professional full-stack developer.</p>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">My Skills</h2>
+
+  <div class="skills-container">
+
+    <div class="skill-card">
+      <h3>HTML</h3>
+      <p>Building structured web pages.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>CSS</h3>
+      <p>Creating modern responsive designs.</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <p>Adding interactivity and animations.</p>
+    </div>
+
+  </div>
 </section>
 <section id="projects">
 
