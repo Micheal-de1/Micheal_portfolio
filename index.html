@@ -1041,22 +1041,26 @@ button {
 
   </div>
 </section>
-<section id="contact">
-  <h2>Contact Me</h2>
+<section id="contact" class="hidden">
 
-  <form id="contactForm">
+<h2 class="section-title">Contact Me</h2>
 
-    <input type="text" id="name" placeholder="Your Name">
-    
-    <input type="email" id="email" placeholder="Your Email">
-    
-    <textarea id="message" placeholder="Your Message"></textarea>
+<p>Email: michealweijie@gmail.com</p>
 
-    <button type="submit">Send Message</button>
+<form id="contact-form" onsubmit="sendMsg(event)">
 
-    <p id="formMessage"></p>
+<input type="text" name="from_name" placeholder="Your Name" required>
 
-  </form>
+<input type="email" name="from_email" placeholder="Your Email" required>
+
+<textarea name="message" placeholder="Your Message" required></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
 </section>
 <footer>
     <p>© 2026 Michael Portfolio | All Rights Reserved</p>
