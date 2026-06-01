@@ -764,6 +764,44 @@ transform:translateY(-8px);
 background:#38bdf8;
 color:#0f172a;
 }
+/* Default (light mode) */
+body {
+  background: white;
+  color: black;
+  transition: 0.3s ease;
+}
+
+/* Dark mode */
+body.dark {
+  background: #0f172a;
+  color: white;
+}
+
+/* Button styling */
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+html {
+    scroll-behavior: smooth;
+}
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadein 0.8s forward;
+}
+
+@keyframes fadein {
+ to {
+     opacity: 1;
+     transform: translateY(0)
+ }
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -785,6 +823,7 @@ color:#0f172a;
   </div>
 
 </nav>
+<button id="themeToggle">🌙Dark Mode</button>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -1123,18 +1162,17 @@ entry.target.classList.add("show");
 hiddenElements.forEach((el)=>observer.observe(el));
 </script>
 <script>
-  const themeToggle = document.getElementById("theme-toggle");
+ const toggleBtn = document.getElementById("themeToggle");
 
-themeToggle.addEventListener("click", ()=>{
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
 
-document.body.classList.toggle("light-mode");
-
-if(document.body.classList.contains("light-mode")){
-themeToggle.innerHTML = "☀️";
-}else{
-themeToggle.innerHTML = "🌙";
-}
-
+  // Change button text
+  if (document.body.classList.contains("dark")) {
+    toggleBtn.textContent = "☀️ Light Mode";
+  } else {
+    toggleBtn.textContent = "🌙 Dark Mode";
+  }
 });
 </script>
 <script scr="script.js"></script>
