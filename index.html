@@ -909,6 +909,32 @@ section {
   text-decoration: none;
   border-radius: 6px;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  padding: 10px;
+  background: #38bdf8;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+#formMessage {
+  margin-top: 10px;
+  font-size: 14px;
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -1015,26 +1041,22 @@ section {
 
   </div>
 </section>
-<section id="contact" class="hidden">
+<section id="contact">
+  <h2>Contact Me</h2>
 
-<h2 class="section-title">Contact Me</h2>
+  <form id="contactForm">
 
-<p>Email: michealweijie@gmail.com</p>
+    <input type="text" id="name" placeholder="Your Name">
+    
+    <input type="email" id="email" placeholder="Your Email">
+    
+    <textarea id="message" placeholder="Your Message"></textarea>
 
-<form onsubmit="sendMsg(event)">
+    <button type="submit">Send Message</button>
 
-<input type="text" name="from_name" placeholder="Your Name" required>
+    <p id="formMessage"></p>
 
-<input type="email" name="from_email" placeholder="Your Email" required>
-
-<textarea name="message" placeholder="Your Message" required></textarea>
-
-<button type="submit">
-Send Message
-</button>
-
-</form>
-
+  </form>
 </section>
 <footer>
     <p>© 2026 Michael Portfolio | All Rights Reserved</p>
@@ -1253,6 +1275,41 @@ const navLinks = document.getElementById("nav-links");
 
 menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("active");
+});
+</script>
+<script>
+    const form = document.getElementById("contactForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
+const formMessage = document.getElementById("formMessage");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+
+  // Basic validation
+  if (name === "" ⠵⠺⠞⠵⠺⠟⠵⠟⠵⠟⠵⠟⠺⠟ message === "") {
+    formMessage.textContent = "⚠️ Please fill all fields";
+    formMessage.style.color = "red";
+    return;
+  }
+
+  if (!email.includes("@")) {
+    formMessage.textContent = "⚠️ Please enter a valid email";
+    formMessage.style.color = "red";
+    return;
+  }
+
+  // Success message
+  formMessage.textContent = "✅ Message sent successfully!";
+  formMessage.style.color = "green";
+
+  // Clear form
+  form.reset();
 });
 </script>
 <script scr="script.js"></script>
