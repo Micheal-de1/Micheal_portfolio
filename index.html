@@ -802,26 +802,74 @@ section {
      transform: translateY(0)
  }
 }
+/* NAVBAR BASE */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #0f172a;
+  color: white;
+  position: relative;
+}
+
+/* NAV LINKS (desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* HAMBURGER ICON (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #0f172a;
+    flex-direction: column;
+    width: 200px;
+    padding: 10px;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
+  <h2>My Portfolio</h2>
 
-  <h2 class="logo">My Portfolio</h2>
+  <div class="menu-toggle" id="menu-toggle">
+    ☰
+  </div>
 
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#goal">Goal</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <button id="theme-toggle">
-   🌙
-  </button>
-  <div class="menu-btn">
-    ☰
-  </div>
-
 </nav>
 <button id="themeToggle">🌙Dark Mode</button>
 
@@ -1173,6 +1221,14 @@ toggleBtn.addEventListener("click", () => {
   } else {
     toggleBtn.textContent = "🌙 Dark Mode";
   }
+});
+</script>
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
 });
 </script>
 <script scr="script.js"></script>
