@@ -1279,37 +1279,36 @@ menuToggle.addEventListener("click", () => {
 </script>
 <script>
     const form = document.getElementById("contactForm");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const messageInput = document.getElementById("message");
 const formMessage = document.getElementById("formMessage");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const message = messageInput.value.trim();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
 
-  // Basic validation
-  if (name === "" ⠵⠺⠞⠵⠺⠟⠵⠟⠵⠟⠵⠟⠺⠟ message === "") {
+  if (!name ⠞⠵⠞⠞⠞⠟⠵⠺ !message) {
     formMessage.textContent = "⚠️ Please fill all fields";
     formMessage.style.color = "red";
     return;
   }
 
-  if (!email.includes("@")) {
-    formMessage.textContent = "⚠️ Please enter a valid email";
+  emailjs.send("sevice_8wbq9in", "template_0eui1aj", {
+    from_name: name,
+    from_email: email,
+    message: message,
+  })
+  .then(() => {
+    formMessage.textContent = "✅ Message sent successfully!";
+    formMessage.style.color = "green";
+    form.reset();
+  })
+  .catch((error) => {
+    formMessage.textContent = "❌ Failed to send message";
     formMessage.style.color = "red";
-    return;
-  }
-
-  // Success message
-  formMessage.textContent = "✅ Message sent successfully!";
-  formMessage.style.color = "green";
-
-  // Clear form
-  form.reset();
+    console.log(error);
+  });
 });
 </script>
 <script scr="script.js"></script>
@@ -1340,5 +1339,10 @@ form.addEventListener("submit", function (e) {
     © 2026 All Rights Reserved.
   </p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  emailjs.init("RZuCAE5rhjIbyVXkq");
+</script>
 </body>
 </html>
