@@ -935,6 +935,17 @@ button {
   margin-top: 10px;
   font-size: 14px;
 }
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+/* visible state */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style></head><body><canvas id="particles"></canvas>
 
 <nav class="navbar">
@@ -956,7 +967,7 @@ button {
 <button id="themeToggle">🌙Dark Mode</button>
 
   <!-- HERO SECTION -->
-  <section class="hero">
+  <section class="hero" class"reveal">
     <div class="hero-text">
       <h1>Hello, I'm <span>Micheal</span>
       </h1>
@@ -976,21 +987,21 @@ button {
   </section>
 
   <!-- ABOUT SECTION -->
-<section id="about" class="hidden>
+<section id="about" class="reveal>
   <h2 class="section-title">About Me</h2>
   <p class="about-text">
     I am learning frontend web development and building modern responsive websites using HTML, CSS and JavaScript.
   </p>
 </section>
 
-<section id="goal" class="hidden">
+<section id="goal" class="reveal">
   <h2 class="section-title">My Goal</h2>
   <p class="about-text">
     My goal is to become a professional full-stack developer and build real-world projects.
   </p>
 </section>
 <!--SKILLS SECTION -->
-<section id="skills" class="hidden>
+<section id="skills" class="reavel>
     
   <h2 class="section-title">My Skills</h2>
 
@@ -1013,26 +1024,26 @@ button {
 
   </div>
 </section>
-<section id="projects">
+<section id="projects" class="reveal">
   <h2 class="section-title">My Projects</h2>
 
   <div class="projects-container">
 
-    <div class="project-card">
+    <div class="project-card reveal">
       <img src="project1.jpg" alt="Project 1">
       <h3>Calculator App</h3>
       <p>A simple calculator built with HTML, CSS and JavaScript.</p>
       <a href="#" target="_blank">View Project</a>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal">
       <img src="project2.jpg" alt="Project 2">
       <h3>To-Do App</h3>
       <p>Task manager with add and delete features.</p>
       <a href="#" target="_blank">View Project</a>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal">
       <img src="project3.jpg" alt="Project 3">
       <h3>Portfolio Website</h3>
       <p>Responsive personal portfolio website.</p>
@@ -1313,6 +1324,30 @@ form.addEventListener("submit", function (e) {
     formMessage.style.color = "red";
     console.log(error);
   });
+});
+</script>
+<script>
+    const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+
+      // Add small delay based on position
+      const index = [...reveals].indexOf(entry.target);
+      entry.target.style.transitionDelay = ${index * 100}ms;
+
+      entry.target.classList.add("active");
+
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+reveals.forEach((el) => {
+  observer.observe(el);
 });
 </script>
 <script scr="script.js"></script>
