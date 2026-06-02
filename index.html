@@ -1090,25 +1090,59 @@ body{
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
+.github-card{
+  background:#1e293b;
+  padding:20px;
+  border-radius:16px;
+  transition:0.3s ease;
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  border:1px solid rgba(255,255,255,0.05);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
 .github-card:hover{
   transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(56,189,248,0.2);
+  box-shadow:0 25px 50px rgba(56,189,248,0.25);
 }
 
 .github-card h3{
   color:#38bdf8;
-  margin-bottom:10px;
+  font-size:18px;
+}
+
+.github-card p{
+  font-size:14px;
+  color:#cbd5e1;
+  line-height:1.5;
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  font-size:12px;
+  border-radius:6px;
+  background:rgba(56,189,248,0.15);
+  color:#38bdf8;
+  border:1px solid rgba(56,189,248,0.3);
+  width:fit-content;
 }
 
 .github-card a{
+  margin-top:auto;
   display:inline-block;
-  margin-top:10px;
-  padding:8px 12px;
+  padding:10px 12px;
   background:#38bdf8;
   color:#0f172a;
   border-radius:8px;
   text-decoration:none;
   font-weight:bold;
+  transition:0.3s;
+}
+
+.github-card a:hover{
+  background:#0ea5e9;
 }
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
@@ -1604,21 +1638,34 @@ type();
 });
 </script>
 <script>
-  const username = "micheal-de1"; // 🔥 change this
+ const username = "micheal-de1"; // 🔥 change this
 
-fetch(`https://api.github.com/users/${micheal-de1}/repos`)
+fetch(`https://api.github.com/users/${username}/repos`)
   .then(res => res.json())
   .then(repos => {
+
     const container = document.getElementById("github-projects");
 
-    repos.forEach(repo => {
+    // 1. remove forks
+    repos = repos.filter(repo => !repo.fork);
+
+    // 2. sort by stars (best projects first)
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+    // 3. limit to top 6 projects
+    repos.slice(0, 6).forEach(repo => {
+
       const card = document.createElement("div");
       card.classList.add("github-card");
 
       card.innerHTML = `
         <h3>${repo.name}</h3>
-        <p>${repo.description ? repo.description : "No description available"}</p>
-        <p>⭐ Stars: ${repo.stargazers_count}</p>
+        <p>${repo.description ? repo.description : "No description provided."}</p>
+
+        <span class="badge">${repo.language ? repo.language : "Unknown"}</span>
+
+        <p>⭐ ${repo.stargazers_count} stars</p>
+
         <a href="${repo.html_url}" target="_blank">View Project</a>
       `;
 
