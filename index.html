@@ -997,14 +997,52 @@ button {
 .project-card:hover::before{
   left:120%;
 }
-</style></head><body><canvas id="particles"></canvas>
+#progress-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0%;
+  background:#38bdf8;
+  z-index:9999;
+}
+.nav-links li a.active{
+  color:#38bdf8;
+  border-bottom:2px solid #38bdf8;
+}
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
 
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+body.light{
+  background:#f1f5f9;
+  color:#0f172a;
+}
+
+body.light .navbar{
+  background:#ffffff;
+}
+
+body.light .project-card{
+  background:#e2e8f0;
+  color:#0f172a;
+}
+
+body.light .nav-links li a{
+  color:#0f172a;
+}
+</style></head><body><canvas id="particles"></canvas>
+<div id="progress-bar"></div>
 <nav class="navbar">
   <h2>My Portfolio</h2>
 
-  <div class="menu-toggle" id="menu-toggle">
-    ☰
-  </div>
+  <div class="menu-toggle" id="menu-toggle">☰</div>
 
   <ul class="nav-links" id="nav-links">
     <li><a href="#home">Home</a></li>
@@ -1243,13 +1281,11 @@ window.addEventListener("scroll", () => {
 });
 </script>
 <script>
-  const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.querySelector(".nav-links");
+const menuToggle = document.getElementById("menu-toggle");
+const navLinksMobile = document.querySelector(".nav-links");
 
-menuBtn.addEventListener("click", ()=>{
-
-navLinks.classList.toggle("active");
-
+menuToggle.addEventListener("click", () => {
+  navLinksMobile.classList.toggle("active");
 });
 </script>
 <script>
@@ -1373,6 +1409,57 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 reveals.forEach((el) => {
   observer.observe(el);
+});
+</script>
+<script>
+  window.onscroll = function () {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  document.getElementById("progress-bar").style.width = scrolled + "%";
+};
+</script>
+<script>
+    const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+<script>
+  const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+<script>
+ const themeBtn = document.getElementById("themeToggle");
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
 });
 </script>
 <script scr="script.js"></script>
