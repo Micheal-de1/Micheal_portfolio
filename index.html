@@ -1193,6 +1193,33 @@ body{
   color:#cbd5e1;
   margin:20px 0;
 }
+.analytics{
+  padding:30px 20px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.stat-card{
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.stat-card h3{
+  color:#38bdf8;
+  font-size:28px;
+}
+
+.stat-card p{
+  color:#cbd5e1;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1273,7 +1300,32 @@ body{
 
   <h2 class="section-title">My Projects</h2>
   <div class="github-projects"></div>
-  <div class="github-dashboard">
+   <section id="projects">
+
+  <h2 class="section-title">My Projects</h2>
+
+  <!-- Analytics -->
+  <div class="analytics">
+    <div class="stats">
+      <div class="stat-card">
+        <h3 id="totalRepos">0</h3>
+        <p>Repositories</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="totalStars">0</h3>
+        <p>Total Stars</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="totalForks">0</h3>
+        <p>Total Forks</p>
+      </div>
+    </div>
+
+    <canvas id="langChart"></canvas>
+  </div>
+  <div class="projects-container" id="github-projects"></div>
 
   <div class="github-controls">
     <input type="text" id="repoSearch" placeholder="Search projects...">
@@ -1710,48 +1762,71 @@ type();
 
 let allRepos = [];
 
-const container = document.getElementById("github-projects");
-const loading = document.getElementById("loading");
-const searchInput = document.getElementById("repoSearch");
-
-// FETCH DATA
 fetch(`https://api.github.com/users/${username}/repos`)
   .then(res => res.json())
   .then(repos => {
 
-    loading.style.display = "none";
+    allRepos = repos.filter(r => !r.fork);
 
-    // remove forks
-    allRepos = repos.filter(repo => !repo.fork);
-
+    renderDashboard(allRepos);
     renderRepos(allRepos);
-  })
-  .catch(() => {
-    loading.innerText = "Failed to load projects.";
+    renderChart(allRepos);
   });
 
-// RENDER FUNCTION
-function renderRepos(repos){
-  container.innerHTML = "";
+// ======================
+// DASHBOARD STATS
+// ======================
+function renderDashboard(repos){
 
-  repos
-    .sort((a,b) => b.stargazers_count - a.stargazers_count)
-    .slice(0, 8)
-    .forEach(repo => {
+  const totalRepos = repos.length;
 
-      const card = document.createElement("div");
-      card.classList.add("github-card");
+  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
+  const totalForks = repos.reduce((sum, r) => sum + r.forks_count, 0);
 
-      card.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "No description available"}</p>
-        <span class="badge">${repo.language || "Unknown"}</span>
-        <p>⭐ ${repo.stargazers_count}</p>
-        <a href="${repo.html_url}" target="_blank">View</a>
-      `;
+  document.getElementById("totalRepos").textContent = totalRepos;
+  document.getElementById("totalStars").textContent = totalStars;
+  document.getElementById("totalForks").textContent = totalForks;
+}
 
-      container.appendChild(card);
-    });
+// ======================
+// LANGUAGE CHART
+// ======================
+function renderChart(repos){
+
+  const langCount = {};
+
+  repos.forEach(repo => {
+    const lang = repo.language || "Other";
+    langCount[lang] = (langCount[lang] || 0) + 1;
+  });
+
+  const ctx = document.getElementById("langChart");
+
+  new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: Object.keys(langCount),
+      datasets: [{
+        data: Object.values(langCount),
+        backgroundColor: [
+          "#38bdf8",
+          "#0ea5e9",
+          "#1e293b",
+          "#60a5fa",
+          "#93c5fd"
+        ]
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: "#fff"
+          }
+        }
+      }
+    }
+  });
 }
 </script>
 <script>
