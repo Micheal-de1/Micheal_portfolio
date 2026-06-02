@@ -1220,6 +1220,20 @@ body{
 .stat-card p{
   color:#cbd5e1;
 }
+#typing{
+  color:#38bdf8;
+  font-weight:bold;
+}
+
+.cursor{
+  animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+  50%{
+    opacity:0;
+  }
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1241,8 +1255,10 @@ body{
   <!-- HERO SECTION -->
   <section class="hero" class"reveal">
     <div class="hero-text">
-      <h1>Hello, I'm <span>Micheal</span></h1>
-      <h1>I build<span id"typing"></span></h1>
+      <h1>
+       I'm David Micheal Isaiah,
+       <span id="typing"></span>
+      </h1>
       <p>
         Frontend Developer Creating modern and responsive web experiences.
       </p>
@@ -1516,46 +1532,48 @@ menuToggle.addEventListener("click", () => {
 });
 </script>
 <script>
-const texts = [
+const words = [
   "Frontend Developer",
-  "Creative Designer",
   "Web Developer",
+  "Creative Designer",
   "UI/UX Enthusiast"
 ];
 
-let count = 0;
-let index = 0;
-let currentText = "";
-let isDeleting = false;
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-function type() {
-  currentText = texts[count];
+function typingEffect() {
+  const typingElement = document.getElementById("typing");
 
-  if (!isDeleting) {
-    index++;
-    document.querySelector(".typing").textContent =
-      currentText.slice(0, index);
+  if (!typingElement) return;
 
-    if (index === currentText.length) {
-      isDeleting = true;
-      setTimeout(type, 1000); // pause before deleting
+  const currentWord = words[wordIndex];
+
+  if (!deleting) {
+    charIndex++;
+    typingElement.textContent = currentWord.substring(0, charIndex);
+
+    if (charIndex === currentWord.length) {
+      deleting = true;
+      setTimeout(typingEffect, 1200);
       return;
     }
   } else {
-    index--;
-    document.querySelector(".typing").textContent =
-      currentText.slice(0, index);
+    charIndex--;
+    typingElement.textContent = currentWord.substring(0, charIndex);
 
-    if (index === 0) {
-      isDeleting = false;
-      count = (count + 1) % texts.length;
+    if (charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
     }
   }
 
-  setTimeout(type, isDeleting ? 60 : 120);
+  setTimeout(typingEffect, deleting ? 60 : 120);
 }
 
-type();
+typingEffect();
+</script>
 </script>
 
 <script>
