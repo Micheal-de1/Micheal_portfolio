@@ -1780,71 +1780,48 @@ type();
 
 let allRepos = [];
 
+const container = document.getElementById("github-projects");
+const loading = document.getElementById("loading");
+const searchInput = document.getElementById("repoSearch");
+
+// FETCH DATA
 fetch(`https://api.github.com/users/${username}/repos`)
   .then(res => res.json())
   .then(repos => {
 
-    allRepos = repos.filter(r => !r.fork);
+    loading.style.display = "none";
 
-    renderDashboard(allRepos);
+    // remove forks
+    allRepos = repos.filter(repo => !repo.fork);
+
     renderRepos(allRepos);
-    renderChart(allRepos);
+  })
+  .catch(() => {
+    loading.innerText = "Failed to load projects.";
   });
 
-// ======================
-// DASHBOARD STATS
-// ======================
-function renderDashboard(repos){
+// RENDER FUNCTION
+function renderRepos(repos){
+  container.innerHTML = "";
 
-  const totalRepos = repos.length;
+  repos
+    .sort((a,b) => b.stargazers_count - a.stargazers_count)
+    .slice(0, 8)
+    .forEach(repo => {
 
-  const totalStars = repos.reduce((sum, r) => sum + r.stargazers_count, 0);
-  const totalForks = repos.reduce((sum, r) => sum + r.forks_count, 0);
+      const card = document.createElement("div");
+      card.classList.add("github-card");
 
-  document.getElementById("totalRepos").textContent = totalRepos;
-  document.getElementById("totalStars").textContent = totalStars;
-  document.getElementById("totalForks").textContent = totalForks;
-}
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "No description available"}</p>
+        <span class="badge">${repo.language || "Unknown"}</span>
+        <p>⭐ ${repo.stargazers_count}</p>
+        <a href="${repo.html_url}" target="_blank">View</a>
+      `;
 
-// ======================
-// LANGUAGE CHART
-// ======================
-function renderChart(repos){
-
-  const langCount = {};
-
-  repos.forEach(repo => {
-    const lang = repo.language || "Other";
-    langCount[lang] = (langCount[lang] || 0) + 1;
-  });
-
-  const ctx = document.getElementById("langChart");
-
-  new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: Object.keys(langCount),
-      datasets: [{
-        data: Object.values(langCount),
-        backgroundColor: [
-          "#38bdf8",
-          "#0ea5e9",
-          "#1e293b",
-          "#60a5fa",
-          "#93c5fd"
-        ]
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          labels: {
-            color: "#fff"
-          }
-        }
-      }
-    }
-  });
+      container.appendChild(card);
+    });
 }
 </script>
 <script>
