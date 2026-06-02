@@ -1258,32 +1258,7 @@ function type() {
 
 type();
 </script>
-<script>
-   const revealElements = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((entry)=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
-});
-
-revealElements.forEach((el)=>observer.observe(el)); 
-</script>
-<script>
-  const revealElements = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries)=>{
-entries.forEach((entry)=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-});
-
-hiddenElements.forEach((el)=>observer.observe(el));
-</script>
 <script>
  const toggleBtn = document.getElementById("themeToggle");
 
