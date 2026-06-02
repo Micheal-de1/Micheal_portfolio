@@ -1082,6 +1082,33 @@ body{
 
 .project-card{
   will-change:transform;
+}.github-card{
+  background:#1e293b;
+  padding:20px;
+  border-radius:15px;
+  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.github-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(56,189,248,0.2);
+}
+
+.github-card h3{
+  color:#38bdf8;
+  margin-bottom:10px;
+}
+
+.github-card a{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 12px;
+  background:#38bdf8;
+  color:#0f172a;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
 }
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
@@ -1162,7 +1189,7 @@ body{
 <section id="projects">
 
   <h2 class="section-title">My Projects</h2>
-
+  <div class="projects-container" id="github-projects"></div>
   <div class="projects-container">
 
   <div class="project-card">
@@ -1575,6 +1602,29 @@ type();
     line_linked: { enable: true }
   }
 });
+</script>
+<script>
+  const username = "micheal-de1"; // 🔥 change this
+
+fetch(`https://api.github.com/users/${micheal-de1}/repos`)
+  .then(res => res.json())
+  .then(repos => {
+    const container = document.getElementById("github-projects");
+
+    repos.forEach(repo => {
+      const card = document.createElement("div");
+      card.classList.add("github-card");
+
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description ? repo.description : "No description available"}</p>
+        <p>⭐ Stars: ${repo.stargazers_count}</p>
+        <a href="${repo.html_url}" target="_blank">View Project</a>
+      `;
+
+      container.appendChild(card);
+    });
+  });
 </script>
 <script scr="script.js"></script>
 <footer>
