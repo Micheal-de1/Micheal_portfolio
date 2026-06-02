@@ -1272,7 +1272,7 @@ body{
 <section id="projects">
 
   <h2 class="section-title">My Projects</h2>
-  <div class="projects-container" id="github-projects"></div>
+  <div class="github-projects"></div>
   <div class="github-dashboard">
 
   <div class="github-controls">
@@ -1344,7 +1344,8 @@ Send Message
     </div>
 </footer>
 </section><div class="top-btn" onclick="scrollToTop()">⬆</div>
-</section><div class="top-btn" onclick="scrollToTop()">⬆</div><script>
+</section><div class="top-btn" onclick="scrollToTop()">⬆</div>
+<script>
 // typing
 const text="Frontend Developer";
 let i=0;
@@ -1538,7 +1539,7 @@ form.addEventListener("submit", function (e) {
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
-  if (!name ⠞⠵⠞⠞⠞⠟⠵⠺ !message) {
+  if (!name || !email||!message) {
     formMessage.textContent = "⚠️ Please fill all fields";
     formMessage.style.color = "red";
     return;
@@ -1787,7 +1788,7 @@ buttons.forEach(btn => {
   });
 });
 </script>
-<script scr="script.js"></script>
+<script src="script.js"></script>
 <footer>
   <h2>David Micheal Isaiah</h2>
 
@@ -1829,7 +1830,7 @@ buttons.forEach(btn => {
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-<div id"particles-js"></div>
+<div id="particles-js"></div>
 <script>
   fetch("https://api.github.com/users/micheal-de1/repos")
   .then(res => res.json())
