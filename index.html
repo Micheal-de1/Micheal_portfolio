@@ -1881,6 +1881,17 @@ buttons.forEach(btn => {
   });
 });
 </script>
+<script>
+ function renderRepos(repos){
+  console.log("Repos loaded:", repos);
+
+  container.innerHTML = "<h3>GitHub Projects Loaded!</h3>";
+
+  repos.forEach(repo => {
+    container.innerHTML += `<p>${repo.name}</p>`;
+  });
+}
+</script>
 <script src="script.js"></script>
 <footer>
   <h2>David Micheal Isaiah</h2>
