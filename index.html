@@ -1587,7 +1587,7 @@ form.addEventListener("submit", function (e) {
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
-  if (!name || !email||!message) {
+  if (!name || !email ||!message) {
     formMessage.textContent = "⚠️ Please fill all fields";
     formMessage.style.color = "red";
     return;
@@ -1688,10 +1688,20 @@ themeBtn.addEventListener("click", () => {
 <script>
  const username = "micheal-de1";
 
+const container = document.getElementById("github-projects");
+const loading = document.getElementById("loading");
+
+loading.textContent = "Loading...";
+
 fetch(`https://api.github.com/users/${username}/repos`)
-  .then(res => res.json())
+  .then(res => {
+    console.log("Status:", res.status);
+    return res.json();
+  })
   .then(repos => {
-    const container = document.getElementById("github-projects");
+    console.log("Repos received:", repos);
+
+    loading.style.display = "none";
 
     container.innerHTML = "";
 
@@ -1700,12 +1710,15 @@ fetch(`https://api.github.com/users/${username}/repos`)
         <div class="project-card">
           <h3>${repo.name}</h3>
           <p>${repo.description || "No description available"}</p>
-          <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+          <a href="${repo.html_url}" target="_blank">View Project</a>
         </div>
       `;
     });
+  })
+  .catch(error => {
+    console.log("GitHub Error:", error);
+    loading.textContent = "Failed to load projects.";
   });
-</script>
 <script>
   searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
