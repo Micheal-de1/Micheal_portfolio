@@ -1144,6 +1144,55 @@ body{
 .github-card a:hover{
   background:#0ea5e9;
 }
+.github-dashboard{
+  padding:20px;
+}
+
+/* controls */
+.github-controls{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.github-controls input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  background:#1e293b;
+  color:white;
+}
+
+/* filter buttons */
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.filters button{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#1e293b;
+  color:white;
+  transition:0.3s;
+}
+
+.filters button.active,
+.filters button:hover{
+  background:#38bdf8;
+  color:#0f172a;
+}
+
+/* loading */
+#loading{
+  color:#cbd5e1;
+  margin:20px 0;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1224,6 +1273,24 @@ body{
 
   <h2 class="section-title">My Projects</h2>
   <div class="projects-container" id="github-projects"></div>
+  <div class="github-dashboard">
+
+  <div class="github-controls">
+    <input type="text" id="repoSearch" placeholder="Search projects...">
+
+    <div class="filters">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="JavaScript">JavaScript</button>
+      <button data-filter="HTML">HTML</button>
+      <button data-filter="CSS">CSS</button>
+    </div>
+  </div>
+
+  <div id="loading">Loading projects...</div>
+
+  <div class="projects-container" id="github-projects"></div>
+
+</div>
   <div class="projects-container">
 
   <div class="project-card">
@@ -1638,40 +1705,87 @@ type();
 });
 </script>
 <script>
- const username = "micheal-de1"; // 🔥 change this
+ const username = "micheal-de1";
 
+let allRepos = [];
+
+const container = document.getElementById("github-projects");
+const loading = document.getElementById("loading");
+const searchInput = document.getElementById("repoSearch");
+
+// FETCH DATA
 fetch(`https://api.github.com/users/${username}/repos`)
   .then(res => res.json())
   .then(repos => {
 
-    const container = document.getElementById("github-projects");
+    loading.style.display = "none";
 
-    // 1. remove forks
-    repos = repos.filter(repo => !repo.fork);
+    // remove forks
+    allRepos = repos.filter(repo => !repo.fork);
 
-    // 2. sort by stars (best projects first)
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    renderRepos(allRepos);
+  })
+  .catch(() => {
+    loading.innerText = "Failed to load projects.";
+  });
 
-    // 3. limit to top 6 projects
-    repos.slice(0, 6).forEach(repo => {
+// RENDER FUNCTION
+function renderRepos(repos){
+  container.innerHTML = "";
+
+  repos
+    .sort((a,b) => b.stargazers_count - a.stargazers_count)
+    .slice(0, 8)
+    .forEach(repo => {
 
       const card = document.createElement("div");
       card.classList.add("github-card");
 
       card.innerHTML = `
         <h3>${repo.name}</h3>
-        <p>${repo.description ? repo.description : "No description provided."}</p>
-
-        <span class="badge">${repo.language ? repo.language : "Unknown"}</span>
-
-        <p>⭐ ${repo.stargazers_count} stars</p>
-
-        <a href="${repo.html_url}" target="_blank">View Project</a>
+        <p>${repo.description || "No description available"}</p>
+        <span class="badge">${repo.language || "Unknown"}</span>
+        <p>⭐ ${repo.stargazers_count}</p>
+        <a href="${repo.html_url}" target="_blank">View</a>
       `;
 
       container.appendChild(card);
     });
+}
+</script>
+<script>
+  searchInput.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+
+  const filtered = allRepos.filter(repo =>
+    repo.name.toLowerCase().includes(value)
+  );
+
+  renderRepos(filtered);
+});
+</script>
+<script>
+ const buttons = document.querySelectorAll(".filters button");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+
+    if (filter === "all") {
+      renderRepos(allRepos);
+    } else {
+      const filtered = allRepos.filter(repo =>
+        repo.language === filter
+      );
+
+      renderRepos(filtered);
+    }
   });
+});
 </script>
 <script scr="script.js"></script>
 <footer>
