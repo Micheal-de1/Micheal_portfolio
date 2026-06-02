@@ -1096,127 +1096,11 @@ Send Message
         <a href="#">Email</a>
     </div>
 </footer>
-</section><div class="top-btn" onclick="scrollToTop()">⬆</div><script>
-// typing
-const text="Frontend Developer";
-let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML=text.substring(0,i+1);
-i++;
-setTimeout(type,100);
-}}
-type();
-
-// scroll reveal
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-sections.forEach(s=>{
-if(s.getBoundingClientRect().top<500){
-s.classList.add("show");
-}
-});
-});
-
-// theme
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
-
-// CV download
-function downloadCV(){
-const a=document.createElement("a");
-a.href="https://example.com/cv.pdf";
-a.download="CV.pdf";
-a.click();
-}
-
-// contact
-function sendMsg(e){
-e.preventDefault();
-alert("Message sent (demo)");
-}
-
-// top button
-function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
-
-// particles (simple)
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let dots=Array.from({length:50},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height}));
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#38bdf8";
-dots.forEach(d=>{
-ctx.beginPath();
-ctx.arc(d.x,d.y,2,0,Math.PI*2);
-ctx.fill();
-});
-requestAnimationFrame(draw);
-}
-draw();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+</section><div class="top-btn" onclick="scrollToTop()">⬆</div>
 <script>
-emailjs.init("ajGjbr50ISCY5EX1");
-
-document
-.getElementById("contact-form")
-.addEventListener("submit", function(event){
-
-event.preventDefault();
-
-emailjs.sendForm(
-"service_8wbq9in",
-"template_0eui1aj",
-this
-)
-.then(() => {
-alert("Message Sent Successfully!");
-})
-.catch((error) => {
-alert("Failed to send message");
-console.log(error);
-});
-
-});
-</script>
-<script src="https://unpkg.com/scrollreveal"></script>
-
-<script>
-ScrollReveal().reveal('.project-card', {
-    distance:'50px',
-    duration:1000,
-    interval:200,
-    origin:'bottom'
-});
-</script>
-<script>
-window.addEventListener("scroll", () => {
-  document.querySelectorAll("section").forEach(sec => {
-    const top = window.scrollY;
-    const offset = sec.offsetTop - 400;
-
-    if(top > offset){
-      sec.classList.add("show");
-    }
-  });
-});
-</script>
-<script>
-  const menuBtn = document.querySelector(".menu-btn");
-const navLinks = document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click", ()=>{
-
-navLinks.classList.toggle("active");
-
-});
-</script>
-<script>
+// =========================
+// Typing Effect
+// =========================
 const texts = [
   "Frontend Developer",
   "Creative Designer",
@@ -1229,7 +1113,7 @@ let index = 0;
 let currentText = "";
 let isDeleting = false;
 
-function type() {
+function typeEffect() {
   currentText = texts[count];
 
   if (!isDeleting) {
@@ -1239,7 +1123,7 @@ function type() {
 
     if (index === currentText.length) {
       isDeleting = true;
-      setTimeout(type, 1000); // pause before deleting
+      setTimeout(typeEffect, 1000);
       return;
     }
   } else {
@@ -1253,82 +1137,22 @@ function type() {
     }
   }
 
-  setTimeout(type, isDeleting ? 60 : 120);
+  setTimeout(typeEffect, isDeleting ? 60 : 120);
 }
 
-type();
-</script>
+if (document.querySelector(".typing")) {
+  typeEffect();
+}
 
-<script>
- const toggleBtn = document.getElementById("themeToggle");
+// =========================
+// Scroll Reveal
+// =========================
+const reveals = document.querySelectorAll(".reveal");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-
-  // Change button text
-  if (document.body.classList.contains("dark")) {
-    toggleBtn.textContent = "☀️ Light Mode";
-  } else {
-    toggleBtn.textContent = "🌙 Dark Mode";
-  }
-});
-</script>
-<script>
-    const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-</script>
-<script>
-    const form = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-
-  if (!name ⠞⠵⠞⠞⠞⠟⠵⠺ !message) {
-    formMessage.textContent = "⚠️ Please fill all fields";
-    formMessage.style.color = "red";
-    return;
-  }
-
-  emailjs.send("sevice_8wbq9in_id", "template_0eui1aj_id", {
-    from_name: name,
-    from_email: email,
-    message: message,
-  })
-  .then(() => {
-    formMessage.textContent = "✅ Message sent successfully!";
-    formMessage.style.color = "green";
-    form.reset();
-  })
-  .catch((error) => {
-    formMessage.textContent = "❌ Failed to send message";
-    formMessage.style.color = "red";
-    console.log(error);
-  });
-});
-</script>
-<script>
-    const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-
-      // Add small delay based on position
-      const index = [...reveals].indexOf(entry.target);
-      entry.target.style.transitionDelay = ${index * 100}ms;
-
       entry.target.classList.add("active");
-
-      observer.unobserve(entry.target);
     }
   });
 }, {
@@ -1338,8 +1162,125 @@ const observer = new IntersectionObserver((entries, observer) => {
 reveals.forEach((el) => {
   observer.observe(el);
 });
+
+// =========================
+// Scroll To Top
+// =========================
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// =========================
+// Mobile Menu
+// =========================
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
+
+// =========================
+// Dark Mode
+// =========================
+const toggleBtn = document.getElementById("themeToggle");
+
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+      toggleBtn.textContent = "☀️ Light Mode";
+    } else {
+      toggleBtn.textContent = "🌙 Dark Mode";
+    }
+  });
+}
+
+// =========================
+// Contact Form + EmailJS
+// =========================
+emailjs.init("YOUR_PUBLIC_KEY");
+
+const form = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    if (!name || !email || !message) {
+      formMessage.textContent = "⚠️ Please fill all fields";
+      formMessage.style.color = "red";
+      return;
+    }
+
+    emailjs.send(
+      "service_8wbq9in",
+      "template_0eui1aj",
+      {
+        from_name: name,
+        from_email: email,
+        message: message
+      }
+    )
+    .then(() => {
+      formMessage.textContent =
+        "✅ Message sent successfully!";
+      formMessage.style.color = "green";
+      form.reset();
+    })
+    .catch((error) => {
+      formMessage.textContent =
+        "❌ Failed to send message";
+      formMessage.style.color = "red";
+      console.log(error);
+    });
+  });
+}
+
+// =========================
+// Particle Background
+// =========================
+const canvas = document.getElementById("particles");
+
+if (canvas) {
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let dots = Array.from({ length: 50 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height
+  }));
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#38bdf8";
+
+    dots.forEach((dot) => {
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(drawParticles);
+  }
+
+  drawParticles();
+}
 </script>
-<script scr="script.js"></script>
 <footer>
   <h2>David Micheal Isaiah</h2>
 
