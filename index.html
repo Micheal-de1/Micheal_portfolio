@@ -1587,7 +1587,7 @@ form.addEventListener("submit", function (e) {
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
-  if (!name || !email ||!message) {
+  if (!name || !email || !message) {
     formMessage.textContent = "⚠️ Please fill all fields";
     formMessage.style.color = "red";
     return;
@@ -1691,33 +1691,30 @@ themeBtn.addEventListener("click", () => {
 const container = document.getElementById("github-projects");
 const loading = document.getElementById("loading");
 
-loading.textContent = "Loading...";
-
 fetch(`https://api.github.com/users/${username}/repos`)
-  .then(res => {
-    console.log("Status:", res.status);
-    return res.json();
-  })
+  .then(res => res.json())
   .then(repos => {
-    console.log("Repos received:", repos);
 
     loading.style.display = "none";
-
     container.innerHTML = "";
 
-    repos.slice(0, 6).forEach(repo => {
-      container.innerHTML += `
-        <div class="project-card">
-          <h3>${repo.name}</h3>
-          <p>${repo.description || "No description available"}</p>
-          <a href="${repo.html_url}" target="_blank">View Project</a>
-        </div>
-      `;
-    });
+    repos
+      .filter(r => !r.fork)
+      .slice(0, 6)
+      .forEach(repo => {
+
+        container.innerHTML += `
+          <div class="project-card">
+            <h3>${repo.name}</h3>
+            <p>${repo.description || "No description"}</p>
+            <a href="${repo.html_url}" target="_blank">View</a>
+          </div>
+        `;
+      });
   })
-  .catch(error => {
-    console.log("GitHub Error:", error);
-    loading.textContent = "Failed to load projects.";
+  .catch(err => {
+    console.log(err);
+    loading.textContent = "Failed to load projects";
   });
 <script>
   searchInput.addEventListener("input", (e) => {
