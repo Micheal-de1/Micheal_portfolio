@@ -1259,7 +1259,7 @@ function type() {
 type();
 </script>
 <script>
-   const hiddenElements = document.querySelectorAll(".hidden");
+   const revealElements = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
@@ -1269,10 +1269,10 @@ const observer = new IntersectionObserver((entries)=>{
     });
 });
 
-hiddenElements.forEach((el)=>observer.observe(el)); 
+revealElements.forEach((el)=>observer.observe(el)); 
 </script>
 <script>
-  const hiddenElements = document.querySelectorAll(".hidden");
+  const revealElements = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver((entries)=>{
 entries.forEach((entry)=>{
