@@ -1330,6 +1330,32 @@ body{
     font-size:12px;
     margin-right:5px;
 }
+
+.skills-container{
+  max-width:800px;
+  margin:auto;
+}
+
+.skill-card{
+  margin:20px 0;
+}
+
+.progress{
+  width:100%;
+  height:12px;
+  background:#334155;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:#38bdf8;
+}
+
+.html{width:90%;}
+.css{width:85%;}
+.js{width:75%;}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1385,25 +1411,30 @@ body{
   </p>
 </section>
 <!--SKILLS SECTION -->
-<section id="skills" class="reavel>
-    
+<section id="skills" class="reveal">
   <h2 class="section-title">My Skills</h2>
 
   <div class="skills-container">
 
     <div class="skill-card">
       <h3>HTML</h3>
-      <p>Building structured web pages.</p>
+      <div class="progress">
+        <div class="progress-bar html"></div>
+      </div>
     </div>
 
     <div class="skill-card">
       <h3>CSS</h3>
-      <p>Creating modern responsive designs.</p>
+      <div class="progress">
+        <div class="progress-bar css"></div>
+      </div>
     </div>
 
     <div class="skill-card">
       <h3>JavaScript</h3>
-      <p>Adding interactivity and animations.</p>
+      <div class="progress">
+        <div class="progress-bar js"></div>
+      </div>
     </div>
 
   </div>
