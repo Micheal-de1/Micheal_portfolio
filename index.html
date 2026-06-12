@@ -662,31 +662,7 @@ right:0;
 }
 
 }
-#theme-toggle{
-padding:8px 14px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-background:#38bdf8;
-font-size:18px;
-}
 
-.light-mode{
-background:white;
-color:#0f172a;
-}
-
-.light-mode section{
-background:white;
-color:#0f172a;
-}
-
-.light-mode .project-card,
-.light-mode .skill-card,
-.light-mode .nav-links{
-background:#e2e8f0;
-color:#0f172a;
-}
 .hero-text{
 margin-top:15px;
 font-size:18px;
@@ -1356,7 +1332,28 @@ body{
 .html{width:90%;}
 .css{width:85%;}
 .js{width:75%;}
-    
+#theme-toggle{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+body.light{
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+body.light .navbar{
+  background:#ffffff;
+}
+
+body.light .project-card,
+body.light .skill-card{
+  background:#e2e8f0;
+  color:#0f172a;
+}
 
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
@@ -1405,16 +1402,12 @@ body{
 <section id="about" class="reveal>
   <h2 class="section-title">About Me</h2>
   <p class="about-text">
-    I am learning frontend web development and building modern responsive websites using HTML, CSS and JavaScript.
-  </p>
+  I build fast, clean websites that work perfectly on phones and laptops. 
+  I started coding with just my phone + 0 data, but I’m obsessed with turning ideas into real websites using HTML, CSS, and JavaScript. 
+  Let’s build something together.
+</p>
 </section>
 
-<section id="goal" class="reveal">
-  <h2 class="section-title">My Goal</h2>
-  <p class="about-text">
-    My goal is to become a professional full-stack developer and build real-world projects.
-  </p>
-</section>
 <!--SKILLS SECTION -->
 <section id="skills" class="reveal">
   <h2 class="section-title">My Skills</h2>
@@ -1704,16 +1697,15 @@ typingEffect();
 </script>
 
 <script>
- const toggleBtn = document.getElementById("themeToggle");
+ const toggleBtn = document.getElementById("theme-toggle");
 
 toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 
-  // Change button text
-  if (document.body.classList.contains("dark")) {
-    toggleBtn.textContent = "☀️ Light Mode";
+  if(document.body.classList.contains("light")){
+    toggleBtn.textContent = "☀️";
   } else {
-    toggleBtn.textContent = "🌙 Dark Mode";
+    toggleBtn.textContent = "🌙";
   }
 });
 </script>
