@@ -1234,6 +1234,67 @@ body{
     opacity:0;
   }
 }
+
+.projects-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.project-card{
+    background:#1e293b;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.4s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+}
+
+.project-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.project-content{
+    padding:20px;
+}
+
+.project-content h3{
+    margin-bottom:10px;
+}
+
+.project-content p{
+    color:#cbd5e1;
+    margin-bottom:15px;
+}
+
+.project-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    padding:10px 20px;
+    background:#38bdf8;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.btn-outline{
+    background:transparent;
+    border:2px solid #38bdf8;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1312,52 +1373,54 @@ body{
 
   </div>
 </section>
-<section id="projects">
+<section id="projects" class="reveal">
+    <h2 class="section-title">My Projects</h2>
 
-  <h2 class="section-title">My Projects</h2>
-  <div class="github-projects"></div>
-   <section id="projects">
+    <div class="projects-container">
 
-  <h2 class="section-title">My Projects</h2>
+        <div class="project-card">
+            <img src="https://via.placeholder.com/600x400" alt="Calculator App">
 
-  
-  <div class="projects-container" id="github-controls">
-    <input type="text" id="repoSearch" placeholder="Search projects...">
+            <div class="project-content">
+                <h3>Calculator App</h3>
+                <p>A modern calculator built with HTML, CSS and JavaScript.</p>
 
-    <div class="filters">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="JavaScript">JavaScript</button>
-      <button data-filter="HTML">HTML</button>
-      <button data-filter="CSS">CSS</button>
+                <div class="project-buttons">
+                    <a href="#" class="btn">Live Demo</a>
+                    <a href="#" class="btn btn-outline">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="https://via.placeholder.com/600x400" alt="Portfolio Website">
+
+            <div class="project-content">
+                <h3>Portfolio Website</h3>
+                <p>Responsive portfolio website showcasing my skills and projects.</p>
+
+                <div class="project-buttons">
+                    <a href="#" class="btn">Live Demo</a>
+                    <a href="#" class="btn btn-outline">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="https://via.placeholder.com/600x400" alt="To-Do App">
+
+            <div class="project-content">
+                <h3>To-Do App</h3>
+                <p>Task management application with clean user interface.</p>
+
+                <div class="project-buttons">
+                    <a href="#" class="btn">Live Demo</a>
+                    <a href="#" class="btn btn-outline">GitHub</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
-
-  <div id="loading">Loading projects...</div>
-
-  <div class="projects-container" id="github-projects"></div>
-
-</div>
-  <div class="projects-container">
-
-  <div class="project-card">
-    <img src="project1.jpg" alt="Project 1">
-    <h3>Calculator App</h3>
-    <p>Calculator built with HTML, CSS and JavaScript.</p>
-  </div>
-
-  <div class="project-card">
-    <img src="project2.jpg" alt="Project 2">
-    <h3>Portfolio Website</h3>
-    <p>Modern portfolio website.</p>
-  </div>
-
-  <div class="project-card">
-    <img src="project3.jpg" alt="Project 3">
-    <h3>Weather App</h3>
-    <p>Weather forecast application.</p>
-  </div>
-
-</div>
 </section>
 <section id="contact" class="hidden">
 
