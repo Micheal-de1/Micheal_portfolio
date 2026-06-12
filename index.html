@@ -1373,6 +1373,39 @@ body.light .skill-card{
 #topBtn:hover{
     transform:scale(1.1);
 }
+.footer{
+    text-align:center;
+    padding:40px 20px;
+    margin-top:60px;
+    background:#1e293b;
+}
+
+.footer h3{
+    margin-bottom:10px;
+}
+
+.footer p{
+    margin:10px 0;
+}
+
+.footer-links{
+    margin:20px 0;
+}
+
+.footer-links a{
+    color:#38bdf8;
+    text-decoration:none;
+    margin:0 10px;
+    transition:0.3s;
+}
+
+.footer-links a:hover{
+    color:white;
+}
+body.light .footer{
+    background:#e2e8f0;
+    color:#0f172a;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1385,6 +1418,7 @@ body.light .skill-card{
   <ul class="nav-links" id="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1537,14 +1571,19 @@ Send Message
 </form>
 
 </section>
-<footer>
-    <p>© 2026 Michael Portfolio | All Rights Reserved</p>
+<footer class="footer">
+  <h3>Micheal Portfolio</h3>
 
-    <div class="social-links">
-        <a href="#">GitHub</a>
-        <a href="#">WhatsApp</a>
-        <a href="#">Email</a>
-    </div>
+  <p>Building my future one line of code at a time.</p>
+
+  <div class="footer-links">
+    <a href="https://github.com/">GitHub</a>
+    <a href="mailto:michealweijie@gmail.com">Email</a>
+  </div>
+
+  <p class="copyright">
+    © 2026 Micheal. All Rights Reserved.
+  </p>
 </footer>
 </section><div class="top-btn" onclick="scrollToTop()">⬆</div>
 </section><div class="top-btn" onclick="scrollToTop()">⬆</div>
@@ -1714,14 +1753,22 @@ typingEffect();
 <script>
  const toggleBtn = document.getElementById("theme-toggle");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-
-  if(document.body.classList.contains("light")){
+// Load saved theme
+if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
     toggleBtn.textContent = "☀️";
-  } else {
-    toggleBtn.textContent = "🌙";
-  }
+}
+
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "☀️";
+    } else {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+    }
 });
 </script>
 <script>
