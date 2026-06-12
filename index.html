@@ -1356,28 +1356,8 @@ body{
 .html{width:90%;}
 .css{width:85%;}
 .js{width:75%;}
-#theme-toggle{
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:18px;
-}
+    
 
-body.light{
-  background:#f8fafc;
-  color:#0f172a;
-}
-
-body.light .navbar{
-  background:#ffffff;
-}
-
-body.light .project-card,
-body.light .skill-card{
-  background:#e2e8f0;
-  color:#0f172a;
-}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1970,18 +1950,6 @@ buttons.forEach(btn => {
     console.log(data);
   });
 </script>
-<script>
-  const toggleBtn = document.getElementById("theme-toggle");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-
-  if(document.body.classList.contains("light")){
-    toggleBtn.textContent = "☀️";
-  } else {
-    toggleBtn.textContent = "🌙";
-  }
-});
-</script>
 </body>
 </html>
