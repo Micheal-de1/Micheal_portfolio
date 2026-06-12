@@ -1295,6 +1295,41 @@ body{
     background:transparent;
     border:2px solid #38bdf8;
 }
+.project-card{
+    background:#1e293b;
+    border-radius:15px;
+    overflow:hidden;
+    transition:all 0.4s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(56,189,248,0.5);
+}
+
+.project-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.project-card:hover img{
+    transform:scale(1.05);
+}.project-tags{
+    margin:15px 0;
+}
+
+.project-tags span{
+    display:inline-block;
+    background:#38bdf8;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    margin-right:5px;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1389,6 +1424,11 @@ body{
                     <a href="#" class="btn">Live Demo</a>
                     <a href="#" class="btn btn-outline">GitHub</a>
                 </div>
+                <div class="project-tags">
+                 <span>HTML</span>
+                 <span>CSS</span>
+                 <span>JavaScript</span>
+                </div>
             </div>
         </div>
 
@@ -1403,6 +1443,11 @@ body{
                     <a href="#" class="btn">Live Demo</a>
                     <a href="#" class="btn btn-outline">GitHub</a>
                 </div>
+                <div class="project-tags">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+</div>
             </div>
         </div>
 
@@ -1418,6 +1463,11 @@ body{
                     <a href="#" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
+            <div class="project-tags">
+               <span>HTML</span>
+               <span>CSS</span>
+               <span>JavaScript</span>
+           </div>
         </div>
 
     </div>
