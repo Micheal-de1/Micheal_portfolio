@@ -1356,6 +1356,28 @@ body{
 .html{width:90%;}
 .css{width:85%;}
 .js{width:75%;}
+#theme-toggle{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+body.light{
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+body.light .navbar{
+  background:#ffffff;
+}
+
+body.light .project-card,
+body.light .skill-card{
+  background:#e2e8f0;
+  color:#0f172a;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1363,16 +1385,19 @@ body{
 
   <div class="menu-toggle" id="menu-toggle">☰</div>
 
-  <ul class="nav-links" id="nav-links">
+  <nav class="navbar">
+  <h2>My Portfolio</h2>
+
+  <ul>
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#goal">Goal</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+
+  <button id="theme-toggle">🌙</button>
 </nav>
-<button id="themeToggle">🌙Dark Mode</button>
 
   <!-- HERO SECTION -->
   <section class="hero" class"reveal">
