@@ -1437,6 +1437,35 @@ body.light .footer{
         margin:10px 0;
     }
 }
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 0.8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+form{
+    max-width:600px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+form input,
+form textarea{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+form button{
+    cursor:pointer;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1581,26 +1610,23 @@ body.light .footer{
 
     </div>
 </section>
-<section id="contact" class="hidden">
+<section id="contact" class="reveal">
+    <h2 class="section-title">Contact Me</h2>
 
-<h2 class="section-title">Contact Me</h2>
+    <form action="https://formsubmit.co/michealweijie@gmail.com" method="POST">
 
-<p>Email: michealweijie@gmail.com</p>
+        <input type="text" name="name" placeholder="Your Name" required>
 
-<form id="contact-form" onsubmit="sendMsg(event)">
+        <input type="email" name="email" placeholder="Your Email" required>
 
-<input type="text" name="from_name" placeholder="Your Name" required>
+        <textarea name="message" rows="6"
+        placeholder="Your Message" required></textarea>
 
-<input type="email" name="from_email" placeholder="Your Email" required>
+        <button type="submit" class="btn">
+            Send Message
+        </button>
 
-<textarea name="message" placeholder="Your Message" required></textarea>
-
-<button type="submit">
-Send Message
-</button>
-
-</form>
-
+    </form>
 </section>
 <footer class="footer">
   <h3>Micheal Portfolio</h3>
@@ -2060,6 +2086,23 @@ const navLinks = document.getElementById("nav-links");
 menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
 });
+</script>
+<script>
+    const reveals = document.querySelectorAll(".reveal");
+
+function revealSections(){
+    reveals.forEach(section => {
+        const windowHeight = window.innerHeight;
+        const revealTop = section.getBoundingClientRect().top;
+
+        if(revealTop < windowHeight - 100){
+            section.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealSections);
+revealSections();
 </script>
 <button id="topBtn">⬆</button>
 </body>
