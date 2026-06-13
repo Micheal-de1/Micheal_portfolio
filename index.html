@@ -101,7 +101,6 @@ z-index:-1;
 
 .cv-btn{
     display:inline-block;
-    margin-top: 20px;
     padding:12px 25px;
     background:#38bdf8;
     color:white;
@@ -1515,7 +1514,18 @@ form button{
     margin-top:20px;
     font-size:0.9rem;
 }
-
+#topBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+    display:none;
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -2154,6 +2164,24 @@ function revealSections(){
 window.addEventListener("scroll", revealSections);
 revealSections();
 </script>
+<script>
+    const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+    if(window.scrollY > 300){
+        topBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+    }
+});
+
+topBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+});
+</script>
 <button id="topBtn">⬆</button>
 <footer class="footer">
     <h3>Micheal Portfolio</h3>
@@ -2171,5 +2199,6 @@ revealSections();
         © 2026 Micheal. All Rights Reserved.
     </p>
 </footer>
+<button id="topBtn">↑</button>
 </body>
 </html>
