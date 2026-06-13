@@ -851,10 +851,10 @@ section {
 /* PROJECT CARD */
 .project-card {
   background: #1e293b;
-  color: white;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center
+  transition: 0.3s;
 }
 
 /* IMAGE */
@@ -862,7 +862,8 @@ section {
   width:100%;
   height:200px;
   object-fit:cover;
-  transition:0.5s ease;
+  display:block;
+  border-radius:10px 10px 0 0;
 }
 
 .project-card:hover img{
@@ -1231,14 +1232,13 @@ body{
     margin-top:40px;
 }
 
-.project-card{
-    background:#1e293b;
-    border-radius:15px;
-    overflow:hidden;
-    transition:0.4s;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+.project-card {
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center
+  transition: 0.3s;
 }
-
 .project-card:hover{
     transform:translateY(-10px);
 }
@@ -1288,8 +1288,7 @@ body{
     background:#1e293b;
     border-radius:15px;
     overflow:hidden;
-    transition:all 0.4s ease;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    transition:all 0.3s;
 }
 
 .project-card:hover{
@@ -1711,22 +1710,17 @@ form button{
 
     <div class="projects-container">
 
-        <div class="project-card">
-            <img src="https://picsum.com/600x400" alt="Calculator App">
+       <div class="project-card">
+    <img src="project1.jpg" alt="Calculator App">
 
-            <div class="project-card reveal">
-    <img src="project1.jpg" alt="Project">
+    <div class="project-content">
+        <h3>Calculator App</h3>
+        <p>A simple calculator built with HTML, CSS and JavaScript.</p>
 
-    <h3>Calculator App</h3>
-
-    <p>
-        A simple calculator built with HTML, CSS and JavaScript.
-    </p>
-
-    <div class="project-links">
-        <a href="#" target="_blank">Live Demo</a>
-        <a href="#" target="_blank">GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+        <a href="#" class="btn">GitHub</a>
     </div>
+</div>
 </div>
                 <div class="project-tags">
                  <span>HTML</span>
