@@ -1528,6 +1528,24 @@ form button{
 .nav-links a.active{
     color:#38bdf8;
 }
+.project-links{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+}
+
+.project-links a{
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:6px;
+    background:#38bdf8;
+    color:white;
+    transition:0.3s;
+}
+
+.project-links a:hover{
+    transform:translateY(-2px);
+}
 </style></head><body><canvas id="particles"></canvas>
 <div id="progress-bar"></div>
 <nav class="navbar">
@@ -1616,14 +1634,20 @@ form button{
         <div class="project-card">
             <img src="https://picsum.com/600x400" alt="Calculator App">
 
-            <div class="project-content">
-                <h3>Calculator App</h3>
-                <p>A modern calculator built with HTML, CSS and JavaScript.</p>
+            <div class="project-card reveal">
+    <img src="project1.jpg" alt="Project">
 
-                <div class="project-buttons">
-                    <a href="#" class="btn">Live Demo</a>
-                    <a href="#" class="btn btn-outline">GitHub</a>
-                </div>
+    <h3>Calculator App</h3>
+
+    <p>
+        A simple calculator built with HTML, CSS and JavaScript.
+    </p>
+
+    <div class="project-links">
+        <a href="#" target="_blank">Live Demo</a>
+        <a href="#" target="_blank">GitHub</a>
+    </div>
+</div>
                 <div class="project-tags">
                  <span>HTML</span>
                  <span>CSS</span>
